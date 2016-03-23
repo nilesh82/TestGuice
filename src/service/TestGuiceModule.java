@@ -2,8 +2,6 @@ package service;
 import com.google.inject.AbstractModule;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 
-import service.TestGuiceAnnotations.ServiceInstance1;
-import service.TestGuiceAnnotations.ServiceInstance2;
 import service1.Service1;
 import service1.Service1Factory;
 import service1.Service1Impl;
@@ -16,11 +14,13 @@ public class TestGuiceModule extends AbstractModule{
 	@Override
 	protected void configure() {
 		bind(ServiceDependency.class).to(ServiceDependencyImpl.class);
+		bind(ServiceDependency2.class);
 		
-		bind(Service1.class).annotatedWith(ServiceInstance1.class).to(Service1Impl.class);
-		bind(Service2.class).annotatedWith(ServiceInstance2.class).to(Service2Impl.class);
+		install(new FactoryModuleBuilder()
+				.implement(Service1.class, Service1Impl.class)
+				.implement(Service2.class, Service2Impl.class)
+				.build(Service1Factory.class));
 	}
-	
 	
 	protected void notused(){
 		bind(ServiceDependency.class).to(ServiceDependencyImpl.class);

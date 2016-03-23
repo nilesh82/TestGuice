@@ -15,9 +15,12 @@ import com.google.inject.BindingAnnotation;
 public class TestGuiceAnnotations {
 
 	@BindingAnnotation @Target({ FIELD, PARAMETER, METHOD }) @Retention(RUNTIME)
-	public @interface ServiceInstance1 {}
+	public @interface Service1Instance1 {}
 	
 	@BindingAnnotation @Target({ FIELD, PARAMETER, METHOD }) @Retention(RUNTIME)
-	public @interface ServiceInstance2 {}
+	public @interface Service1Instance2 {}
+	
+	@BindingAnnotation @Target({ FIELD, PARAMETER, METHOD }) @Retention(RUNTIME)
+	public @interface Service2Instance1 {}
 	
 }
